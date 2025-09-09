@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Age Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <main class="page">
+    <section class="card" role="region" aria-labelledby="title">
+      <header class="card-header">
+        <div class="icon-wrap" id="iconWrap" aria-hidden="true">
+          <!-- Calendar SVG -->
+          <svg id="calendarIcon" class="icon calendar" viewBox="0 0 64 64" width="64" height="64" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect x="4" y="10" width="56" height="50" rx="6" fill="url(#g1)"></rect>
+            <rect x="4" y="18" width="56" height="8" rx="2" fill="rgba(255,255,255,0.12)"></rect>
+            <path d="M18 6v8M46 6v8" stroke="white" stroke-width="3" stroke-linecap="round"></path>
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0" stop-color="#ff9a9e"/>
+                <stop offset="1" stop-color="#fecfef"/>
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <!-- Cake SVG (hidden until result) -->
+          <svg id="cakeIcon" class="icon cake" viewBox="0 0 64 64" width="64" height="64" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+            <rect x="10" y="30" width="44" height="18" rx="4" fill="#fff5e6"></rect>
+            <rect x="14" y="22" width="36" height="10" rx="4" fill="#ffd6a5"></rect>
+            <path d="M24 22c2-4 8-4 10 0" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round"></path>
+            <path d="M32 16v6" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </div>
+
+        <div>
+          <h1 id="title">✨ Age Calculator</h1>
+          <p class="muted">Enter your date of birth to see a breakdown of your age.</p>
+        </div>
+      </header>
+
+      <!-- Form -->
+      <form id="ageForm" class="form" aria-describedby="hint">
+        <label for="dob" class="sr-only">Date of Birth</label>
+        <input id="dob" type="date" name="dob" required aria-required="true" max="">
+        <button id="calcBtn" type="submit" class="btn">Calculate</button>
+      </form>
+      <p id="hint" class="muted small">Tip: Use the calendar, or type YYYY-MM-DD. Certificate requires this task ✓</p>
+
+      <!-- Result -->
+      <section id="resultArea" class="result" aria-live="polite" aria-atomic="true">
+        <div class="result-grid">
+          <div class="result-card">
+            <svg class="ring" viewBox="0 0 36 36">
+              <path class="ring-bg" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831a15.9155 15.9155 0 1 1 0-31.831"/>
+              <path id="yearsRing" class="ring-fill" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831a15.9155 15.9155 0 1 1 0-31.831"/>
+            </svg>
+            <div class="value">
+              <div class="num" id="yearsVal">0</div>
+              <div class="label">Years</div>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <svg class="ring" viewBox="0 0 36 36">
+              <path class="ring-bg" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831a15.9155 15.9155 0 1 1 0-31.831"/>
+              <path id="monthsRing" class="ring-fill" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831a15.9155 15.9155 0 1 1 0-31.831"/>
+            </svg>
+            <div class="value">
+              <div class="num" id="monthsVal">0</div>
+              <div class="label">Months</div>
+            </div>
+          </div>
+
+          <div class="result-card">
+            <svg class="ring" viewBox="0 0 36 36">
+              <path class="ring-bg" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831a15.9155 15.9155 0 1 1 0-31.831"/>
+              <path id="daysRing" class="ring-fill" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831a15.9155 15.9155 0 1 1 0-31.831"/>
+            </svg>
+            <div class="value">
+              <div class="num" id="daysVal">0</div>
+              <div class="label">Days</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button id="copyBtn" class="btn ghost" title="Copy result">Copy Result</button>
+          <div id="resultText" class="sr-only" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <footer class="card-footer muted small">
+        Built for <strong>CodeAlpha</strong> 
+      </footer>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
